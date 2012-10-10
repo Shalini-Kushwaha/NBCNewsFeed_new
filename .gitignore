@@ -3,3 +3,9 @@ build.log
 build
 npm-debug.log
 tmp
+Resources/*
+build*
+build/*
+*.log
+.project
+.settings
