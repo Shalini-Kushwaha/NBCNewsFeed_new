@@ -1,6 +1,7 @@
 function Controller() {
     function getNewsData(newsData) {
         Ti.API.info(newsData);
+        $.newsTable.visible = !0;
     }
     function setCategoryTable(categories) {
         var catLength = categories.length, category, row, label, result = [], i;
@@ -21,6 +22,10 @@ function Controller() {
                 left: 10
             });
             row.add(label);
+            row.addEventListener("click", function(e) {
+                Ti.API.info(e.source.url);
+                $.nbc.getNewsData(getNewsData, e.source.url);
+            });
             result.push(row);
         }
         $.categoryTable.setData(result);
@@ -66,6 +71,16 @@ function Controller() {
         id: "categoryTable"
     }), "TableView", $.__views.__alloyId1);
     $.__views.__alloyId1.add($.__views.categoryTable);
+    var __alloyId3 = [];
+    $.__views.newsTable = A$(Ti.UI.createTableView({
+        top: 45,
+        visible: !1,
+        width: "100%",
+        height: "100%",
+        data: __alloyId3,
+        id: "newsTable"
+    }), "TableView", $.__views.__alloyId1);
+    $.__views.__alloyId1.add($.__views.newsTable);
     $.__views.tab = A$(Ti.UI.createTab({
         window: $.__views.__alloyId1,
         id: "tab"

@@ -1,9 +1,4 @@
-exports.getNewsData = function(callback, url) {
-
-	// this.url = 'http://feeds.nbclosangeles.com/nbclosangeles/news/top-stories.xml';
-	// if (category != null) {
-		// this.url = 'http://feeds.nbclosangeles.com/nbclosangeles/' + category + '/' + subcategory + '.xml';
-	// }
+exports.getNewsData = function(callback, url) {	
 	
 	this.xhr = Titanium.Network.createHTTPClient();
 

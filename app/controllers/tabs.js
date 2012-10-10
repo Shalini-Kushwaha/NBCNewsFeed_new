@@ -11,6 +11,7 @@ $.tab.addEventListener('focus', function(e){
 
 function getNewsData(newsData){
 	Ti.API.info(newsData);
+	$.newsTable.visible = true;
 };
 
 
@@ -32,6 +33,7 @@ function setCategoryTable(categories){
 			url: category.url
 		});
 		
+		
 		label = Ti.UI.createLabel({
 			height: Ti.UI.SIZE,
 			width: Ti.UI.SIZE,
@@ -41,6 +43,13 @@ function setCategoryTable(categories){
 		});
 		
 		row.add(label);
+		// on row click event, get news table
+		row.addEventListener('click', function(e){
+			Ti.API.info(e.source.url);
+			//$.nbc.getNewsData(getNewsData, e.source.url);
+			
+		});
+		
 		result.push(row);
 	}
 	$.categoryTable.setData(result);

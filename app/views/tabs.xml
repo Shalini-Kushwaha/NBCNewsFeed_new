@@ -3,7 +3,7 @@
 		<Window navBarHidden="true" class="container">
 			<Require src="dropdown" id="dropDown"/>
 			<TableView id='categoryTable'></TableView> 
-			 <!-- <TableView id='resultTable'></TableView> --> 
+			 <TableView id='newsTable'></TableView>
 		</Window>
 	</Tab>
 </Alloy>
