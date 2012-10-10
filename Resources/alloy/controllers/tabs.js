@@ -2,10 +2,9 @@ function Controller() {
     function getNewsData(newsData) {
         Ti.API.info(newsData);
     }
-    function setCategoryTable(categories, tab) {
+    function setCategoryTable(categories) {
         var catLength = categories.length, category, row, label, result = [], i;
         Ti.API.info("catLength" + catLength);
-        Ti.API.info(tab);
         for (i = 0; i < catLength; i += 1) {
             category = categories[i];
             row = Ti.UI.createTableViewRow({
@@ -17,7 +16,9 @@ function Controller() {
             label = Ti.UI.createLabel({
                 height: Ti.UI.SIZE,
                 width: Ti.UI.SIZE,
-                text: category.title
+                text: category.title,
+                textAlign: "center",
+                left: 10
             });
             row.add(label);
             result.push(row);
@@ -25,7 +26,7 @@ function Controller() {
         $.categoryTable.setData(result);
         Alloy.CFG.categoryTable = $.categoryTable;
     }
-    function setCategories(tabIndex, tab) {
+    function setCategories(tabIndex) {
         var categories = [], categoriesJson = {}, text = Alloy.CFG.newsFeedCategories[tabIndex];
         if (text) {
             var xmlDoc = Ti.XML.parseString(text), categoriesLength = xmlDoc.getElementsByTagName("a").length, parentNode = xmlDoc.getElementsByTagName("a");
@@ -36,7 +37,7 @@ function Controller() {
                 };
                 categories.push(categoriesJson);
             }
-            setCategoryTable(categories, tab);
+            setCategoryTable(categories);
         }
     }
     require("alloy/controllers/BaseController").apply(this, Array.prototype.slice.call(arguments));
@@ -55,9 +56,12 @@ function Controller() {
     $.__views.dropDown.setParent($.__views.__alloyId1);
     var __alloyId2 = [];
     $.__views.categoryTable = A$(Ti.UI.createTableView({
-        top: 40,
+        top: 45,
         borderColor: "red",
         visible: !1,
+        width: "95%",
+        left: 0,
+        zIndex: 100,
         data: __alloyId2,
         id: "categoryTable"
     }), "TableView", $.__views.__alloyId1);

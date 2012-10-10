@@ -40,13 +40,16 @@ function Controller() {
     _.extend($, $.__views);
     var isClicked = !1;
     $.dropDownBtn.addEventListener("click", function(e) {
-        Ti.API.info("dropdown");
         Alloy.CFG.categoryTable.visible = !1;
         e.source.backgroundImage = "arrowDrop.png";
+        e.source.height = 13;
+        e.source.width = 9;
         if (!isClicked) {
             isClicked = !0;
             Alloy.CFG.categoryTable.visible = !0;
             e.source.backgroundImage = "arrowDown.png";
+            e.source.width = 13;
+            e.source.height = 9;
         } else isClicked = !1;
     });
     _.extend($, exports);

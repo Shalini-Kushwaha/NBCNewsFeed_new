@@ -2,7 +2,10 @@
 	backgroundColor:"white"
 },
 "#categoryTable":{
-	top: 40,
+	top: 45,
 	borderColor:'red',
-	visible: false
+	visible: false,
+	width:'95%',
+	left:0,
+	zIndex: 100
 }
