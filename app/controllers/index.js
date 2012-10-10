@@ -43,8 +43,8 @@ function createTabs() {
 		// });
 	}
 	Alloy.CFG.tabs = tabsArray;
-	
+	$.categoryTabGroup.open();
 };
 
-$.categoryTabGroup.open();
+
 
