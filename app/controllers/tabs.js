@@ -5,7 +5,8 @@ exports.getTab = function(){
 };
 
 $.tab.addEventListener('focus', function(e){
-	alert(e.index);
+	setCategories(e.index, e.source);
+	
 });
 
 function getNewsData(newsData){
@@ -13,13 +14,20 @@ function getNewsData(newsData){
 };
 
 
-function setCategoryTable(categories){	
+
+Ti.App.addEventListener('showCategory', function(){
+//	$.categoryTable.visible = true;
+   	alert('clicked');
+});
+
+function setCategoryTable(categories, tab){	
 	var catLength = categories.length,category, row, label, result =[], i;
 	Ti.API.info('catLength' + catLength);
+	Ti.API.info(tab);
 	for(i=0; i< catLength; i+=1){	
 		category = categories[i];	
 		row = Ti.UI.createTableViewRow({
-			height: Ti.UI.SIZE,
+			height: 40,
 			width: Ti.UI.SIZE,
 			index: i,
 			url: category.url
@@ -28,22 +36,24 @@ function setCategoryTable(categories){
 		label = Ti.UI.createLabel({
 			height: Ti.UI.SIZE,
 			width: Ti.UI.SIZE,
-			text: category.title
+			text: category.title,
+			textAlign:'left'
 		});
 		
 		row.add(label);
 		result.push(row);
-	}	
-	tab.window.children[1].setData(result);	
-	tab.window.children[1].visible = true;
+	}
+	$.categoryTable.setData(result);
+	Alloy.CFG.categoryTable = 	$.categoryTable; 
+	//$.categoryTable.visible = true;
 };
 
 
 
-function setCategories(tabIndex){		
+function setCategories(tabIndex, tab){		
 	var categories =[];
 	var categoriesJson = {};	
-	var text = subCategoriesArray[tabIndex];	
+	var text = Alloy.CFG.newsFeedCategories[tabIndex];	
 	// if text present, parse into xml document
 	if (text) {
 		var xmlDoc = Ti.XML.parseString(text);

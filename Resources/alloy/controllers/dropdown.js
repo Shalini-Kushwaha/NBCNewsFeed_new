@@ -38,6 +38,17 @@ function Controller() {
     }), "Button", $.__views.categoryTextField);
     $.__views.categoryTextField.add($.__views.dropDownBtn);
     _.extend($, $.__views);
+    var isClicked = !1;
+    $.dropDownBtn.addEventListener("click", function(e) {
+        Ti.API.info("dropdown");
+        Alloy.CFG.categoryTable.visible = !1;
+        e.source.backgroundImage = "arrowDrop.png";
+        if (!isClicked) {
+            isClicked = !0;
+            Alloy.CFG.categoryTable.visible = !0;
+            e.source.backgroundImage = "arrowDown.png";
+        } else isClicked = !1;
+    });
     _.extend($, exports);
 }
 

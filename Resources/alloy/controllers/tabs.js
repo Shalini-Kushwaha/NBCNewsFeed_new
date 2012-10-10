@@ -2,13 +2,14 @@ function Controller() {
     function getNewsData(newsData) {
         Ti.API.info(newsData);
     }
-    function setCategoryTable(categories) {
+    function setCategoryTable(categories, tab) {
         var catLength = categories.length, category, row, label, result = [], i;
         Ti.API.info("catLength" + catLength);
+        Ti.API.info(tab);
         for (i = 0; i < catLength; i += 1) {
             category = categories[i];
             row = Ti.UI.createTableViewRow({
-                height: Ti.UI.SIZE,
+                height: 40,
                 width: Ti.UI.SIZE,
                 index: i,
                 url: category.url
@@ -21,11 +22,11 @@ function Controller() {
             row.add(label);
             result.push(row);
         }
-        tab.window.children[1].setData(result);
-        tab.window.children[1].visible = !0;
+        $.categoryTable.setData(result);
+        Alloy.CFG.categoryTable = $.categoryTable;
     }
-    function setCategories(tabIndex) {
-        var categories = [], categoriesJson = {}, text = subCategoriesArray[tabIndex];
+    function setCategories(tabIndex, tab) {
+        var categories = [], categoriesJson = {}, text = Alloy.CFG.newsFeedCategories[tabIndex];
         if (text) {
             var xmlDoc = Ti.XML.parseString(text), categoriesLength = xmlDoc.getElementsByTagName("a").length, parentNode = xmlDoc.getElementsByTagName("a");
             for (var i = 0; i < categoriesLength; i++) {
@@ -54,7 +55,7 @@ function Controller() {
     $.__views.dropDown.setParent($.__views.__alloyId1);
     var __alloyId2 = [];
     $.__views.categoryTable = A$(Ti.UI.createTableView({
-        top: 50,
+        top: 40,
         borderColor: "red",
         visible: !1,
         data: __alloyId2,
@@ -69,7 +70,10 @@ function Controller() {
     _.extend($, $.__views);
     var categories = [], tab;
     $.tab.addEventListener("focus", function(e) {
-        alert(e.index);
+        setCategories(e.index, e.source);
+    });
+    Ti.App.addEventListener("showCategory", function() {
+        alert("clicked");
     });
     _.extend($, exports);
 }
