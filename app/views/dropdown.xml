@@ -1,6 +1,6 @@
 <Alloy>
 	<View id='parentView'>
-		<TextField id='categoryTextField'>
+		<TextField id='categoryTextField' touchEnabled='false'>
 			<Button id='dropDownBtn'></Button>			
 		</TextField>
 		<!-- <TextField id='categoryTextField' onReturn='showCategory'>
