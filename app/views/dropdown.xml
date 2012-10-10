@@ -1,0 +1,11 @@
+<Alloy>
+	<View id='parentView'>
+		<TextField id='categoryTextField'>
+			<Button id='dropDownBtn'></Button>			
+		</TextField>
+		<!-- <TextField id='categoryTextField' onReturn='showCategory'>
+			<Button id='dropDownBtn' onClick='showCategory'></Button>			
+		</TextField> -->
+		 <!-- <TableView id='dropDownTable'></TableView>  -->
+	</View>
+</Alloy>

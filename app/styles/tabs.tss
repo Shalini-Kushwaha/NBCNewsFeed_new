@@ -1,0 +1,8 @@
+".container": {
+	backgroundColor:"white"
+},
+"#categoryTable":{
+	top: 50,
+	borderColor:'red',
+	visible: false
+}

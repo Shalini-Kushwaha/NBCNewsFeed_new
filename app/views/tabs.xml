@@ -1,0 +1,9 @@
+<Alloy>
+	<Tab id="tab">
+		<Window navBarHidden="true" class="container">
+			<Require src="dropdown" id="dropDown"/>
+			<TableView id='categoryTable'></TableView> 
+			 <!-- <TableView id='resultTable'></TableView> --> 
+		</Window>
+	</Tab>
+</Alloy>

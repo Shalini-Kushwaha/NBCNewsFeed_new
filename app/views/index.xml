@@ -1,0 +1,10 @@
+<Alloy>
+	
+	 <Window class="container">
+		<Require type="widget" src="com.default.NBCNewsFeed" id="nbc"/>	
+	</Window> 
+	
+	<TabGroup id="categoryTabGroup">		
+			<!-- <Require src="tabs" id ="tabs"/>	 -->						
+	</TabGroup>	
+</Alloy>

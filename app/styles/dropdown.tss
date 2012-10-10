@@ -1,0 +1,27 @@
+"#parentView":{
+	top: 5,
+	height: 40,
+	width: Ti.UI.FILL,
+	backgroundColor : 'transparent',
+	left: 0	
+},
+"#categoryTextField":{
+	top : 0,
+	left : 0,	
+	width : '100%',
+	height : '100%', 
+	value : '-- Select Category --',
+	index : -1,
+	borderStyle : Titanium.UI.INPUT_BORDERSTYLE_ROUNDED,
+	rightButtonMode : Titanium.UI.INPUT_BUTTONMODE_ALWAYS,
+	font : { fontFamily: 'Arial', fontWeight: 'normal', fontSize: '14'},
+	color : 'black'	
+},
+"#dropDownBtn":{
+	backgroundImage : 'arrowDrop.png',
+	height : 13,
+	width : 9,
+	top : 15,
+	right:5	
+}
+
