@@ -82,6 +82,7 @@ function setCategoryTable(categories){
 			height: 40,
 			width: Ti.UI.SIZE,
 			index: i,
+			titleText : category.title,
 			url: category.url
 		});
 		
@@ -94,13 +95,14 @@ function setCategoryTable(categories){
 			left:10			
 		});
 		
-		row.add(label);
-		// on row click event, get news table
-		row.addEventListener('click', function(e){			
-		//	Ti.App.fireEvent('getNewsData',{url: e.source.url});
-			Ti.API.info(e.source.url);
-			$.nbc.getNewsData(getNewsData, e.source.url);			
-		});
+        row.add(label);
+        // on row click event, get news table
+        row.addEventListener('click', function(e) {
+            //	Ti.App.fireEvent('getNewsData',{url: e.source.url});
+            Ti.API.info(e.source.url);
+            $.nbc.getNewsData(getNewsData, e.source.url);
+            $.categoryTable.hideTable(e.source.titleText);
+        }); 
 		
 		result.push(row);
 	}
