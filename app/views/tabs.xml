@@ -1,6 +1,7 @@
 <Alloy>
-	<Tab id="tab">
+	<Tab id="tab">		
 		<Window navBarHidden="true" class="container">
+			<Require type="widget" src="com.default.NBCNewsFeed" id="nbc"/>	
 			<Require src="dropdown" id="dropDown"/>
 			<TableView id='categoryTable'></TableView> 
 			 <TableView id='newsTable'></TableView>

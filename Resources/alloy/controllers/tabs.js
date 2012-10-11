@@ -1,6 +1,39 @@
 function Controller() {
     function getNewsData(newsData) {
         Ti.API.info(newsData);
+        $.categoryTable.visible = !1;
+        var i, newsDataLength = newsData.length, row, imageView, titleLabel, publishDateLabel, result = [];
+        for (i = 0; i < newsDataLength; i += 1) {
+            news = newsData[i];
+            row = Ti.UI.createTableViewRow({
+                height: 60,
+                width: Ti.UI.SIZE,
+                index: i,
+                url: news.url
+            });
+            imageView = Ti.UI.createImageView({
+                height: 80,
+                width: 80,
+                image: news.image,
+                left: 0
+            });
+            titleLabel = Ti.UI.createLabel({
+                height: Ti.UI.SIZE,
+                width: "75%",
+                text: news.title,
+                textAlign: "left",
+                left: 90,
+                font: {
+                    fontFamily: "arial",
+                    fontSize: "14"
+                }
+            });
+            row.add(imageView);
+            row.add(titleLabel);
+            row.addEventListener("click", function(e) {});
+            result.push(row);
+        }
+        $.newsTable.setData(result);
         $.newsTable.visible = !0;
     }
     function setCategoryTable(categories) {
@@ -23,7 +56,6 @@ function Controller() {
             });
             row.add(label);
             row.addEventListener("click", function(e) {
-                Ti.API.info(e.source.url);
                 $.nbc.getNewsData(getNewsData, e.source.url);
             });
             result.push(row);
@@ -55,6 +87,10 @@ function Controller() {
         navBarHidden: "true",
         id: "__alloyId1"
     }), "Window", null);
+    $.__views.nbc = Alloy.createWidget("com.default.NBCNewsFeed", "widget", {
+        id: "nbc"
+    });
+    $.__views.nbc.setParent($.__views.__alloyId1);
     $.__views.dropDown = Alloy.createController("dropdown", {
         id: "dropDown"
     });
@@ -73,7 +109,7 @@ function Controller() {
     $.__views.__alloyId1.add($.__views.categoryTable);
     var __alloyId3 = [];
     $.__views.newsTable = A$(Ti.UI.createTableView({
-        top: 45,
+        top: 48,
         visible: !1,
         width: "100%",
         height: "100%",
@@ -87,7 +123,7 @@ function Controller() {
     }), "Tab", null);
     $.addTopLevelView($.__views.tab);
     _.extend($, $.__views);
-    var categories = [], tab;
+    var categories = [];
     $.tab.addEventListener("focus", function(e) {
         setCategories(e.index, e.source);
     });

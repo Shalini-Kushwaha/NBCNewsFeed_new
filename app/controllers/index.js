@@ -9,7 +9,6 @@ function getSubCategories(subCategories) {
 
 $.nbc.getSubCategories(getSubCategories);
 
-
 function createTabs() {			
 	var i, tabsFile = require('alloy/controllers/tabs'),tabs,tab, title, tabsArray=[];	
 	for (i = 0, categoryLength = Alloy.CFG.newsFeedCategories.length; i < categoryLength; i+=1) {				
@@ -31,16 +30,7 @@ function createTabs() {
 		}
 		tab.title = title;
 		tabsArray.push(tab);
-		$.categoryTabGroup.addTab(tab);
-		// tabs[i].id  = i;
-		// tabs[i].addEventListener('focus', function(e) {			
-			// //getSubCategories();	
-			// alert(subCategoriesArray.length);
-			// setTimeout(function(){
-				// $.tabs.setCategories(e.index, subCategoriesArray,e.source);	
-			// }, 200);
-			// //$.dropDown.setTabIndex(tabIndex);
-		// });
+		$.categoryTabGroup.addTab(tab);		
 	}
 	Alloy.CFG.tabs = tabsArray;
 	$.categoryTabGroup.open();
