@@ -1,5 +1,8 @@
 {
-	"global": {}, 
+	"global": {
+		"newsFeedCategories": "null",
+		"tabs":"null"
+	}, 
 	"env:development": {}, 
 	"env:test": {}, 
 	"env:production": {}, 

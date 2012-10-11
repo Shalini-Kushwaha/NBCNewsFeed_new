@@ -1,19 +1,20 @@
 var categories =[];
-	
+
+// function to get current tab	
 exports.getTab = function(){	
 	return $.tab;
 };
 
-$.tab.addEventListener('focus', function(e){
+//tab event listner
+function loadCategories(e){
 	setCategories(e.index, e.source);
-	
-});
+}
 
-
+// function to get news data
 function getNewsData(newsData){
-	Ti.API.info(newsData);
+	//Ti.API.info(newsData);
 	$.categoryTable.visible = false; // set other settings
-	var i, newsDataLength = newsData.length,row,imageView, titleLabel, result=[];
+	var i, newsDataLength = newsData.length,row,imageView, titleLabel, result=[], detailView;
 	for(i=0; i< newsDataLength; i+=1){
 		news = newsData[i];
 		row = Ti.UI.createTableViewRow({
@@ -27,7 +28,8 @@ function getNewsData(newsData){
 			height: 80,
 			width: 80,
 			image: news.image,
-			left : 0
+			left : 0,
+			touchEnabled: false
 		});
 		titleLabel = Ti.UI.createLabel({
 			height: Ti.UI.SIZE,
@@ -37,15 +39,17 @@ function getNewsData(newsData){
 			left:90,		
 			font:{
 				fontFamily:'arial', fontSize:'14'
-			}			
+			},
+			touchEnabled: false			
 		});
 		
 		row.add(imageView);
 		row.add(titleLabel);
 	
 		// on row click event, get detail page
-		row.addEventListener('click', function(e){	
-			
+		row.addEventListener('click', function(e){
+			$.newsDetailWebView.url = e.source.url;
+			$.newsDetailScrollView.animate(animateView(0));	
 		});
 		
 		result.push(row);
@@ -55,11 +59,19 @@ function getNewsData(newsData){
 	
 };
 
+function animateView(leftValue){	
+	var animation = Ti.UI.createAnimation();
+		animation.left = leftValue;
+		animation.duration = 500;
+		return animation;
+}
 
-Ti.App.addEventListener('showCategory', function(){
-//	$.categoryTable.visible = true;
-   	alert('clicked');
-});
+function hideNewsDetailView(e){
+	if(e.direction === 'right'){
+		$.newsDetailScrollView.animate(animateView('100%'));
+	}
+	
+}
 
 function setCategoryTable(categories){	
 	var catLength = categories.length,category, row, label, result =[], i;
@@ -86,6 +98,7 @@ function setCategoryTable(categories){
 		// on row click event, get news table
 		row.addEventListener('click', function(e){			
 		//	Ti.App.fireEvent('getNewsData',{url: e.source.url});
+			Ti.API.info(e.source.url);
 			$.nbc.getNewsData(getNewsData, e.source.url);			
 		});
 		

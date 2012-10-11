@@ -1,5 +1,5 @@
 "#parentView":{
-	top: 5,
+	top: 2,
 	height: 40,
 	width: Ti.UI.FILL,
 	backgroundColor : 'transparent',

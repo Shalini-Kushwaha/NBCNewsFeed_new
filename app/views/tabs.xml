@@ -1,10 +1,13 @@
 <Alloy>
-	<Tab id="tab">		
-		<Window navBarHidden="true" class="container">
+	<Tab id="tab" onFocus="loadCategories">		
+		<Window id= 'mainWindow' class="container">
 			<Require type="widget" src="com.default.NBCNewsFeed" id="nbc"/>	
 			<Require src="dropdown" id="dropDown"/>
 			<TableView id='categoryTable'></TableView> 
 			 <TableView id='newsTable'></TableView>
+			 <ScrollView id='newsDetailScrollView' onSwipe="hideNewsDetailView">
+			 	<WebView id='newsDetailWebView' ></WebView>
+			 </ScrollView>			 
 		</Window>
 	</Tab>
 </Alloy>

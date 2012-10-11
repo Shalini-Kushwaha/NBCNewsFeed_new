@@ -1,9 +1,10 @@
 ".container": {
-	backgroundColor:"white"
+	backgroundColor:"white",
+	navBarHidden: "false",
+	title:'NBC News'
 },
 "#categoryTable":{
-	top: 45,
-	borderColor:'red',
+	top: 45,	
 	visible: false,
 	width:'95%',
 	left:0,
@@ -14,4 +15,18 @@
 	visible: false,
 	width: '100%',
 	height:'100%'	
+},
+'#newsDetailScrollView':{
+	top:0,
+	left:'100%',
+	width: '100%',
+	height:'100%',
+	scrollType:'vertical',
+	contentHeight:'auto'	
+},
+'#newsDetailWebView':{
+	top:0,
+	left:0,
+	width: Ti.UI.FILL,
+	height: Ti.UI.FILL
 }
