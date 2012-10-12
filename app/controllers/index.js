@@ -9,8 +9,15 @@ function getSubCategories(subCategories) {
 
 $.nbc.getSubCategories(getSubCategories);
 
-function createTabs() {			
-	var i, tabsFile = require('alloy/controllers/tabs'),tabs,tab, title, tabsArray=[];	
+function createTabs() {
+	var i, tabsFile = require('alloy/controllers/tabs'),tabs,tab, title, tabsArray=[],
+	favTab = require('alloy/controllers/favTab');
+	tabs =new favTab();
+	tab = tabs.getTab();
+	tab.title = 'Favorites';
+	tabsArray.push(tab);
+	$.categoryTabGroup.addTab(tab);
+	
 	for (i = 0, categoryLength = Alloy.CFG.newsFeedCategories.length; i < categoryLength; i+=1) {				
 		tabs = new tabsFile();
 		tab = tabs.getTab();

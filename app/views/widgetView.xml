@@ -1,0 +1,6 @@
+<Alloy>
+	<View id='view' backgroundColor='red' height=115 width=250 layout='vertical' top=30>
+		<Label id='label' top=0 backgroundColor='green'></Label>
+		<TableView id='tblFavorites' top=5></TableView>
+	</View>
+</Alloy>

@@ -95,14 +95,39 @@ function setCategoryTable(categories){
 			left:10			
 		});
 		
+		button = Ti.UI.createButton({
+		    title:'Add to Favorites',
+		    right :10,
+		    id:'addButton',
+		    titleText:category.title,
+		    url: category.url
+		});
+		
         row.add(label);
+        row.add(button);
+        
         // on row click event, get news table
         row.addEventListener('click', function(e) {
             //	Ti.App.fireEvent('getNewsData',{url: e.source.url});
+            if (e.source.id === 'addButton') {
+                var db = Ti.Database.open('nbcNews');
+                var favorites = db.execute('SELECT * FROM favorites');
+                while (favorites.isValidRow()) {
+                    titleText = favorites.fieldByName('title');
+                    if (e.source.titleText === titleText) {
+                        alert('Already added');
+                        return;
+                    }
+                    favorites.next();
+                }
+                db.execute("INSERT INTO favorites(title,url)VALUES(?,?)", e.source.titleText, e.source.url);
+                db.close();
+                return;
+            }
             Ti.API.info(e.source.url);
             $.nbc.getNewsData(getNewsData, e.source.url);
             $.categoryTable.hideTable(e.source.titleText);
-        }); 
+        });
 		
 		result.push(row);
 	}
