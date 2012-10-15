@@ -2,6 +2,9 @@
 	<Tab id="tab" onFocus="loadCategories">
 		<Window id= 'mainWindow' class="container">
 			<ScrollView id='scrollview' height='100%' width='100%' backgroundColor='blue' layout='vertical'></ScrollView>
+			<ScrollView id='newsDetailScrollView' onSwipe="hideNewsDetailView">
+				<WebView id='newsDetailWebView' ></WebView>
+			</ScrollView>	
 		</Window>
 	</Tab>
 

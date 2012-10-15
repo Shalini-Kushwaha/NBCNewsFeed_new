@@ -113,8 +113,8 @@ function setCategoryTable(categories){
                 var db = Ti.Database.open('nbcNews');
                 var favorites = db.execute('SELECT * FROM favorites');
                 while (favorites.isValidRow()) {
-                    titleText = favorites.fieldByName('title');
-                    if (e.source.titleText === titleText) {
+                    url = favorites.fieldByName('url');
+                    if (e.source.url === url) {
                         alert('Already added');
                         return;
                     }
