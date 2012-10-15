@@ -8,3 +8,6 @@ build/*
 *.log
 .project
 .settings
+Resources
+Resources*
+Resources/*
