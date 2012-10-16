@@ -1,8 +1,9 @@
 <Alloy>
-	<View id='view' backgroundColor='red' height=110 width=250 layout='vertical' top=30>
-		<Label id='label' top=0 backgroundColor='green' left=10></Label>
-		<Button id='button' top=-20 right=20 title='Delete' height=20 width=60></Button>
-		<TableView id='tblFavorites' top=0></TableView>
+	<View id='view'>
+		<Label id='label'></Label>
+		<Button id='button'></Button>
+		<Button id='collapse'></Button>
+		<TableView id='tblFavorites'></TableView>
 		<Require type="widget" src="com.default.NBCNewsFeed" id="nbc"/>
 	</View>
 </Alloy>

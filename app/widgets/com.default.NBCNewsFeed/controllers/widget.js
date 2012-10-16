@@ -44,7 +44,7 @@ exports.getNewsData = function(callback, url) {
 		}
 	};
 	this.xhr.onerror = function(e) {
-			alert('failure' + e);
+	   Ti.API.info('Object:'+ JSON.stringify(e) + '\n url:'+url);
 	};
 	this.xhr.timeout = 5000;
 

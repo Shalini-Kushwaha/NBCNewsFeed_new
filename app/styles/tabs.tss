@@ -1,14 +1,17 @@
 ".container": {
 	backgroundColor:"white",
 	navBarHidden: "false",
-	title:'NBC News'
+	title:'NBC News',
+	barColor:'black'
 },
 "#categoryTable":{
-	top: 45,	
+	top: 42,	
 	visible: false,
 	width:'95%',
-	left:0,
-	zIndex: 100
+	left:10,
+	zIndex: 100,
+	height:200,
+	borderColor:'black'
 },
 "#newsTable":{
 	top:48,

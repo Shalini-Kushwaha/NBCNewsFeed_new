@@ -47,7 +47,7 @@ function getNewsData(newsData){
 		row.add(titleLabel);
 	
 		// on row click event, get detail page
-		row.addEventListener('click', function(e){
+		row.addEventListener('singletap', function(e){
 			$.newsDetailWebView.url = e.source.url;
 			$.newsDetailScrollView.animate(animateView(0));	
 		});
@@ -75,7 +75,8 @@ function hideNewsDetailView(e){
 
 function setCategoryTable(categories){	
 	var catLength = categories.length,category, row, label, result =[], i;
-	Ti.API.info('catLength' + catLength);	
+	Ti.API.info('catLength' + catLength);
+	$.nbc.getNewsData(getNewsData, categories[0].url);	
 	for(i=0; i< catLength; i+=1){	
 		category = categories[i];	
 		row = Ti.UI.createTableViewRow({
@@ -92,22 +93,29 @@ function setCategoryTable(categories){
 			width: Ti.UI.SIZE,
 			text: category.title,
 			textAlign:'center',
-			left:10			
+			left:10,
+			touchEnabled:false	
 		});
 		
 		button = Ti.UI.createButton({
-		    title:'Add to Favorites',
+		    title:'+',
+		    font:{
+		        fontSize:24,
+		        fontWeight:'bold'
+		    },
 		    right :10,
 		    id:'addButton',
 		    titleText:category.title,
-		    url: category.url
+		    url: category.url,
+		    height:20,
+		    width:20
 		});
 		
         row.add(label);
         row.add(button);
         
         // on row click event, get news table
-        row.addEventListener('click', function(e) {
+        row.addEventListener('singletap', function(e) {
             //	Ti.App.fireEvent('getNewsData',{url: e.source.url});
             if (e.source.id === 'addButton') {
                 var db = Ti.Database.open('nbcNews');
