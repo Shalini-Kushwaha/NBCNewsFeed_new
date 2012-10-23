@@ -16,8 +16,8 @@ exports.getNewsData = function(callback, url) {
 			if (this.items.item(c).getElementsByTagName('media:thumbnail').item(0)) {
 				image = this.items.item(c).getElementsByTagName('media:thumbnail').item(0).getAttribute('url');
 			}
-			if (this.items.item(c).getElementsByTagName('pheedo:origLink').item(0)) {
-				url = this.items.item(c).getElementsByTagName('pheedo:origLink').item(0).text;
+			if (this.items.item(c).getElementsByTagName('link').item(0)) {
+				url = this.items.item(c).getElementsByTagName('link').item(0).text;
 			}
 			if (this.items.item(c).getElementsByTagName('description').item(0)) {
 				description = this.items.item(c).getElementsByTagName('description').item(0).text;

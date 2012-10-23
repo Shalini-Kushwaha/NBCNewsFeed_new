@@ -47,7 +47,7 @@ function getNewsData(newsData){
 		row.add(titleLabel);
 	
 		// on row click event, get detail page
-		row.addEventListener('singletap', function(e){
+		row.addEventListener('click', function(e){
 			$.newsDetailWebView.url = e.source.url;
 			$.newsDetailScrollView.animate(animateView(0));	
 		});
@@ -115,7 +115,7 @@ function setCategoryTable(categories){
         row.add(button);
         
         // on row click event, get news table
-        row.addEventListener('singletap', function(e) {
+        row.addEventListener('click', function(e) {
             //	Ti.App.fireEvent('getNewsData',{url: e.source.url});
             if (e.source.id === 'addButton') {
                 var db = Ti.Database.open('nbcNews');
@@ -136,12 +136,10 @@ function setCategoryTable(categories){
             $.nbc.getNewsData(getNewsData, e.source.url);
             $.categoryTable.hideTable(e.source.titleText);
         });
-		
 		result.push(row);
 	}
 	$.categoryTable.setData(result);
-	Alloy.CFG.categoryTable = $.categoryTable; 
-	
+	Alloy.CFG.categoryTable = $.categoryTable;
 };
 
 
@@ -149,7 +147,8 @@ function setCategoryTable(categories){
 function setCategories(tabIndex){		
 	var categories =[];
 	var categoriesJson = {};	
-	var text = Alloy.CFG.newsFeedCategories[tabIndex];	
+	var text = Alloy.CFG.newsFeedCategories[tabIndex];
+    text = text?text.replace(/&/g,'&amp;'):text;
 	// if text present, parse into xml document
 	if (text) {
 		var xmlDoc = Ti.XML.parseString(text);

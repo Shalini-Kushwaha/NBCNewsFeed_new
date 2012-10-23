@@ -59,7 +59,7 @@ function getNewsData(newsData) {
         row.add(titleLabel);
 
         // on row click event, get detail page
-        row.addEventListener('singletap', function(e) {
+        row.addEventListener('click', function(e) {
             params.rowClick(e.source.url);
         });
 
