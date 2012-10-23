@@ -147,7 +147,7 @@ function setCategoryTable(categories){
 function setCategories(tabIndex){		
 	var categories =[];
 	var categoriesJson = {};	
-	var text = Alloy.CFG.newsFeedCategories[tabIndex];
+	var text = Alloy.CFG.newsFeedCategories[tabIndex-1];
     text = text?text.replace(/&/g,'&amp;'):text;
 	// if text present, parse into xml document
 	if (text) {
