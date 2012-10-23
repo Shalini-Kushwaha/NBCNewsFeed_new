@@ -14,43 +14,50 @@ $.button.addEventListener('singletap', function(e) {
 });
 
 $.collapse.addEventListener('singletap', function(e) {
-    if(e.source.title === '+'){
-        $.view.height = 110;
-        e.source.title = '-';
+    if(e.source.isCollapse){
+        $.view.height = 140;
+        e.source.isCollapse = false;
         return;
     }
-    $.view.height = 23;
-    e.source.title = '+';
+    $.view.height = 30;
+    e.source.isCollapse = true;
 });
 
 // function to get news data
 function getNewsData(newsData) {
     var i, newsDataLength = newsData.length, row, imageView, titleLabel, result = [], detailView;
-    for ( i = 0; i < 2; i += 1) {
+    for ( i = 0; i < newsDataLength; i += 1) {
         news = newsData[i];
-        row = Ti.UI.createTableViewRow({
-            height : 45,
-            width : Ti.UI.SIZE,
+        row = Ti.UI.createView({
+            left:10,
+            top:0,
+            height : 100,
+            width : 120,
             index : i,
-            url : news.url
+            url : news.url,
+            layout: 'vertical',
+            backgroundColor:'black'
         });
 
         imageView = Ti.UI.createImageView({
+            top:0,
             height : 70,
-            width : 70,
-            image : news.image,
+            width : 120,
+            backgroundImage : news.image,
             left : 0,
             touchEnabled : false
         });
         titleLabel = Ti.UI.createLabel({
+            top:0,
             height : Ti.UI.SIZE,
-            width : 200,
+            width : 100,
             text : news.title,
             textAlign : 'left',
-            left : 80,
+            color:'white',
+            left : 0,
             font : {
                 fontFamily : 'arial',
-                fontSize : '14'
+                fontSize : '12'
             },
             touchEnabled : false
         });
@@ -63,7 +70,7 @@ function getNewsData(newsData) {
             params.rowClick(e.source.url);
         });
 
-        result.push(row);
+        $.favView.add(row);
     }
-    $.tblFavorites.setData(result);
+    
 };

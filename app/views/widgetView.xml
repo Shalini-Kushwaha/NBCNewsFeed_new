@@ -1,9 +1,11 @@
 <Alloy>
 	<View id='view'>
+		<View id='headerView'>
 		<Label id='label'></Label>
 		<Button id='button'></Button>
 		<Button id='collapse'></Button>
-		<TableView id='tblFavorites'></TableView>
+		</View>
+		<ScrollView id='favView'></ScrollView>
 		<Require type="widget" src="com.default.NBCNewsFeed" id="nbc"/>
 	</View>
 </Alloy>
