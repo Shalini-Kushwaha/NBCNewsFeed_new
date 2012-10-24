@@ -2,8 +2,7 @@
 /* Global Variables */
 /*************************/
 
-var categories =[], isCategoryListViewVisible = false;
-
+var categories =[], isCategoryListViewVisible = false, currentCategoryUrl;
 
 /*************************/
 /* Private and Public functions */
@@ -146,7 +145,9 @@ function setCategoryTable(categories){
 	Ti.API.info('catLength' + catLength);
 	
 	// call API to get default data and set category Label text
-	$.nbc.getNewsData(getNewsData, categories[0].url);	
+	$.nbc.getNewsData(getNewsData, categories[0].url);
+	currentCategoryUrl=categories[0].url;
+	isFavorite();
 	$.categoryLabel.text = categories[0].title;
 	
 	// bind category table
@@ -189,27 +190,11 @@ function setCategoryTable(categories){
         
         // on row click event, get news table
         row.addEventListener('click', function(e) {
-     
-        	$.categoryLabel.text = e.source.titleText;        
-        	showCategories();
-        	
-            //	Ti.App.fireEvent('getNewsData',{url: e.source.url});
-            // if (e.source.id === 'addButton') {
-                // var db = Ti.Database.open('nbcNews');
-                // var favorites = db.execute('SELECT * FROM favorites');
-                // while (favorites.isValidRow()) {
-                    // url = favorites.fieldByName('url');
-                    // if (e.source.url === url) {
-                        // alert('Already added');
-                        // return;
-                    // }
-                    // favorites.next();
-                // }
-                // db.execute("INSERT INTO favorites(title,url)VALUES(?,?)", e.source.titleText, e.source.url);
-                // db.close();
-                // return;
-            // }
+            $.categoryLabel.text = e.source.titleText;        
+            showCategories();
             Ti.API.info(e.source.url);
+            currentCategoryUrl=e.source.url;
+            isFavorite();
             $.nbc.getNewsData(getNewsData, e.source.url);
           //  $.categoryTable.hideTable(e.source.titleText);
         });
@@ -246,6 +231,21 @@ function setCategories(tabIndex){
 	
 };
 
+function isFavorite() {
+    var db = Ti.Database.open('nbcNews');
+    var favorites = db.execute('SELECT * FROM favorites');
+    while (favorites.isValidRow()) {
+        url = favorites.fieldByName('url');
+        if (currentCategoryUrl === url) {
+            $.favoritesButton.image='favorite.png';
+            db.close();
+            return true;
+        }
+        favorites.next();
+    }
+    $.favoritesButton.image='unFavorite.png';
+    db.close();
+}
 
 /*************************/
 /* Event Handlers */
@@ -266,5 +266,19 @@ function showCategoriesList(e){
 	showCategories();
 }
 
-
+/*
+ * Click event of favorites button
+ */
+function addToFavorites(e){
+    var db = Ti.Database.open('nbcNews');
+    if(!isFavorite()){
+        db.execute("INSERT INTO favorites(title,url)VALUES(?,?)", $.categoryLabel.text, currentCategoryUrl);
+        $.favoritesButton.image='favorite.png';
+        db.close();
+        return;
+    }
+    db.execute('DELETE FROM favorites where url=?', currentCategoryUrl);
+    $.favoritesButton.image='unFavorite.png';
+    db.close();
+}
 

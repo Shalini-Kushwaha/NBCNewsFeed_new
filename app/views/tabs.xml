@@ -6,6 +6,7 @@
 			<View id='categoryTextView'>
 				<Label id="categoryLabel"></Label>
 				<Label id="changeCategoryLabel" onClick="showCategoriesList"></Label>
+				<ImageView id="favoritesButton" onClick="addToFavorites"/>
 			</View>
 			
 			<View id='categoryListView'>
