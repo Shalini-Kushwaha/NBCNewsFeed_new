@@ -101,8 +101,10 @@ function getNewsData(newsData){
 		row.addEventListener('click', function(e){
 			isCategoryListViewVisible = true;
 			showCategories();
-			$.newsDetailWebView.url = e.source.url;
-			$.newsDetailScrollView.animate(animateView(0));	
+			var newsDetailWindow = Alloy.createController('details',{
+                url : e.source.url,
+            }).getView();
+            newsDetailWindow.open({transition: Ti.UI.iPhone.AnimationStyle.CURL_DOWN});
 		});
 		
 		result.push(row);

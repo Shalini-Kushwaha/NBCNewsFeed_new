@@ -1,0 +1,8 @@
+<Alloy>
+	<Window id="win">
+		 <View id='newsDetailView'>
+		 	<WebView id='newsDetailWebView' ></WebView>
+		 	<Label id="closeButton"  onClick="hideNewsDetailView" />
+		 </View>			 
+	</Window>
+</Alloy>

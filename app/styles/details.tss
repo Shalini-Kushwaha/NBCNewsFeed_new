@@ -1,0 +1,31 @@
+'#win':{
+    backgroundColor:"transparent",
+},
+'#newsDetailView[formFactor=handheld]':{
+    top:42,
+    width: Ti.UI.FILL,
+    height: Ti.UI.FILL,
+    backgroundImage:'curledpaper.png',
+},
+'#newsDetailView[formFactor=tablet]':{
+    width: '90%',
+    height: '90%',
+    backgroundImage:'curledpaper.png',
+},
+'#newsDetailWebView':{
+    top:5,
+    left:10,
+    width: '90%',
+    height:'90%',
+    //backgroundColor:"transparent",
+},
+'#closeButton':{
+    bottom:5,
+    right:5,
+    width: 30,
+    height:30,
+    backgroundColor: 'transparent',
+    text: 'X',
+    textAlign:'center',
+    opacity:0.7,
+},
