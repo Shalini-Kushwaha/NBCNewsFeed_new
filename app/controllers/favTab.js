@@ -15,6 +15,7 @@ function loadCategories(e) {
     clearChildrens();
     var db = Ti.Database.open('nbcNews');
     db.execute('CREATE TABLE IF NOT EXISTS favorites(title TEXT, url TEXT); ');
+    //db.execute("INSERT INTO favorites(title,url)VALUES(?,?)",'Prop-Zero','http://www.nbclosangeles.com/blogs/prop-zero/?rss=y&embedThumb=y&summary=y');
     var favorites = db.execute('SELECT * FROM favorites');
     
     //db.execute('DELETE TABLE favorites');

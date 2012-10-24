@@ -4,7 +4,7 @@
 "#view": {
     backgroundColor : '#222421',
     height : 140,
-    width : 290,
+    width : '90%',
     layout : 'vertical',
     top : 10,
     borderColor : 'black'
