@@ -18,16 +18,22 @@ exports.getTab = function(){
 function convertUTCTimeToLocal(date){	
 	var d=new Date(date);
 	d = d.toLocaleString();
-	d = d.replace('GMT+05:30','');
-	Ti.API.info(d);
+	d = d.replace('GMT+05:30','');	
 	return d;
 }
 
 // function to get news data
 function getNewsData(newsData){
-	Ti.API.info(newsData);
-	//$.categoryTable.visible = false; // set other settings
+	//Ti.API.info(newsData);
 	var i, newsDataLength = newsData.length,row,imageView,rightView, titleLabel, result=[], detailView, publishDateLabel;
+	$.errorMessageLabel.hide();
+	$.newsTable.hide();
+
+	if(newsDataLength === 0){
+		$.errorMessageLabel.show();
+		
+		return;
+	}
 	for(i=0; i< newsDataLength; i+=1){
 		news = newsData[i];
 		row = Ti.UI.createTableViewRow({

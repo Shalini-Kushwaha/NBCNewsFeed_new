@@ -16,7 +16,9 @@
 			 <TableView id='newsTable'></TableView>
 			 <ScrollView id='newsDetailScrollView' onSwipe="hideNewsDetailView">
 			 	<WebView id='newsDetailWebView' ></WebView>
-			 </ScrollView>			 
+			 </ScrollView>	
+			 
+			 <Label id='errorMessageLabel'></Label>		 
 		</Window>
 	</Tab>
 </Alloy>

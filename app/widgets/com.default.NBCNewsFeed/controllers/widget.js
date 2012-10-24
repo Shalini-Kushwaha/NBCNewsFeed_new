@@ -6,49 +6,59 @@ exports.getNewsData = function(callback, url) {
     
 	this.xhr.onload = function() {		
 		var title, image, url, pubDate, description, c = 0, updateTime, newsData = [];
-		//alert(this.responseXML);	
-		this.doc = this.responseXML.documentElement;
-	    
-	    updateTime = this.doc.getElementsByTagName('pubDate').item(0).text;
-	    updateTime = updateTime.split(' ')[4];
-	    
-		this.items = this.doc.getElementsByTagName('item');
-		//alert(this.items.length);
-		for ( c = 0; c < this.items.length; c += 1) {
-			if (this.items.item(c).getElementsByTagName('title').item(0)) {
-				title = this.items.item(c).getElementsByTagName('title').item(0).text;
+	
+		try{
+			if(this.responseXML){			
+			//Ti.API.info('this.responseXML ' + this.responseXML);	
+			this.doc = this.responseXML.documentElement;
+			
+		    updateTime = this.doc.getElementsByTagName('pubDate').item(0).text;
+		    updateTime = updateTime.split(' ')[4];
+		    
+			this.items = this.doc.getElementsByTagName('item');
+			
+			//alert(this.items.length);
+			for ( c = 0; c < this.items.length; c += 1) {
+				if (this.items.item(c).getElementsByTagName('title').item(0)) {
+					title = this.items.item(c).getElementsByTagName('title').item(0).text;
+				}
+				if (this.items.item(c).getElementsByTagName('media:thumbnail').item(0)) {
+					image = this.items.item(c).getElementsByTagName('media:thumbnail').item(0).getAttribute('url');
+				}
+				if (this.items.item(c).getElementsByTagName('link').item(0)) {
+					url = this.items.item(c).getElementsByTagName('link').item(0).text;
+				}
+				if (this.items.item(c).getElementsByTagName('description').item(0)) {
+					description = this.items.item(c).getElementsByTagName('description').item(0).text;
+				}
+				if (this.items.item(c).getElementsByTagName('pubDate').item(0)) {
+					pubDate = this.items.item(c).getElementsByTagName('pubDate').item(0).text;
+				}			
+			
+				this.news = {
+					title : title,
+					image : image,
+					url : url,
+					description: description,
+					pubDate: pubDate
+					
+				};
+				newsData.push(this.news);			
+				}
 			}
-			if (this.items.item(c).getElementsByTagName('media:thumbnail').item(0)) {
-				image = this.items.item(c).getElementsByTagName('media:thumbnail').item(0).getAttribute('url');
+	
+			if (callback) {				
+				callback(newsData, updateTime);
 			}
-			if (this.items.item(c).getElementsByTagName('link').item(0)) {
-				url = this.items.item(c).getElementsByTagName('link').item(0).text;
-			}
-			if (this.items.item(c).getElementsByTagName('description').item(0)) {
-				description = this.items.item(c).getElementsByTagName('description').item(0).text;
-			}
-			if (this.items.item(c).getElementsByTagName('pubDate').item(0)) {
-				pubDate = this.items.item(c).getElementsByTagName('pubDate').item(0).text;
-			}			
-		
-			this.news = {
-				title : title,
-				image : image,
-				url : url,
-				description: description,
-				pubDate: pubDate
-				
-			};
-			newsData.push(this.news);
-			Ti.API.info(this.news);
 		}
-		Ti.API.info(JSON.stringify(newsData));
-
-		if (callback) {
-			callback(newsData, updateTime);
+		catch(ex){
+			//alert(ex);
+			if (callback) {				
+				callback(newsData, updateTime);
+			}
 		}
 	};
-	this.xhr.onerror = function(e) {
+	this.xhr.onerror = function(e) {		
 	   Ti.API.info('Object:'+ JSON.stringify(e) + '\n url:'+url);
 	};
 	this.xhr.timeout = 5000;
