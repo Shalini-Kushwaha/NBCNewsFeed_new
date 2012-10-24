@@ -9,15 +9,13 @@
 	width:'95%',
 	left:2,
 	zIndex: 500,
-	height:Ti.UI.SIZE,
-//	borderColor:'green'
+	height:Ti.UI.SIZE
 },
 "#newsTable":{
 	top:28,
 	visible: false,
 	width: '100%',
-	height:'95%',
-	backgroundColor: '#9f1b1e'	
+	height:'100%'	
 },
 '#newsDetailScrollView':{
 	top:0,
@@ -38,7 +36,6 @@
 	width:'50%',
 	top: 35,
 	right: 0,
-	//borderColor: 'green',
 	visible:'false',
 	zIndex: 200,
 	backgroundImage: 'filterDrop.png'
@@ -46,7 +43,7 @@
 "#categoryTextView":{
 	top: 0,	
 	width: '100%',
-	height: '8%',
+	height: '28',
 	backgroundColor: '#9f1b1e'	
 },
 "#categoryLabel":{

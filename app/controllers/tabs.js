@@ -15,11 +15,20 @@ exports.getTab = function(){
 	return $.tab;
 };
 
+
+function convertUTCTimeToLocal(date){	
+	var d=new Date(date);
+	d = d.toLocaleString();
+	d = d.replace('GMT+05:30','');
+	Ti.API.info(d);
+	return d;
+}
+
 // function to get news data
 function getNewsData(newsData){
 	Ti.API.info(newsData);
 	//$.categoryTable.visible = false; // set other settings
-	var i, newsDataLength = newsData.length,row,imageView, titleLabel, result=[], detailView, publishDateLabel;
+	var i, newsDataLength = newsData.length,row,imageView,rightView, titleLabel, result=[], detailView, publishDateLabel;
 	for(i=0; i< newsDataLength; i+=1){
 		news = newsData[i];
 		row = Ti.UI.createTableViewRow({
@@ -38,37 +47,50 @@ function getNewsData(newsData){
 			left : 5,
 			touchEnabled: false			
 		});
-		titleLabel = Ti.UI.createLabel({
-			height: Ti.UI.SIZE,
+		
+		rightView = Ti.UI.createView({
+			height: Ti.UI.FILL,
 			width: '70%',
+			layout:'vertical',
+			left : 95, 
+			top: 5,			
+			touchEnabled: false
+		});
+		
+		titleLabel = Ti.UI.createLabel({			
+			height: 35,
+			width: '90%',
 			text: news.title,		
 			textAlign:'left',
-			left:95,		
+			left:2,		
 			font:{
-				fontFamily:'arial', fontSize:'16', fontWight: 'bold'
+				fontFamily:'arial', fontSize:'14', fontWeight: 'bold'
 			},
 			touchEnabled: false,
 			color: 'white',
-			top : 8			
+			top : 2		
 		});
 		
 		publishDateLabel = Ti.UI.createLabel({
 			height: Ti.UI.SIZE,
-			width: '65%',
-			text: news.pubDate ,  //getPubDate(news.pubDate),		
+			width: '95%',
+			text: convertUTCTimeToLocal(news.pubDate) ,  	
 			textAlign:'left',
-			left:95,		
+			left:2,		
 			font:{
 				fontFamily:'arial', fontSize:'12'
 			},
 			touchEnabled: false,
-			color: '#9f1b1e', 
-			top: 45			
+			color: 'gray' , 
+			top: 2			
 		});
 		
+		rightView.add(titleLabel);
+		rightView.add(publishDateLabel);
+		
 		row.add(imageView);
-		row.add(titleLabel);
-		row.add(publishDateLabel);
+		row.add(rightView);
+		
 	
 		// on row click event, get detail page
 		row.addEventListener('click', function(e){
