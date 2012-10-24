@@ -3,6 +3,7 @@
 		<View id='headerView'>
 		<Label id='label'></Label>
 		<Button id='button'></Button>
+		<Label id='updateTime'/>
 		<Button id='collapse'></Button>
 		</View>
 		<ScrollView id='favView'></ScrollView>

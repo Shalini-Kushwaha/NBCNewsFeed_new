@@ -15,7 +15,7 @@ function createTabs() {
 	tabs =new favTab();
 	tab = tabs.getTab();
 	tab.title = 'Favorites';
-	tab.icon = 'newsIcon.png';
+	tab.icon = 'favIcon.png';
 	tabsArray.push(tab);
 	$.categoryTabGroup.addTab(tab);
 	
@@ -29,15 +29,15 @@ function createTabs() {
 				break;
 			case 1:
 				title = 'Entertainment';
-				icon = 'newsIcon.png';
+				icon = 'entertainmentIcon.png';
 				break;
 			case 2:
 				title = 'The Scene';
-				icon = 'favIcon.png';
+				icon = 'sceneIcon.png';
 				break;
 			case 3:
 				title = 'Franchises';
-				icon = 'favIcon.png';
+				icon = 'franchisesIcon.png';
 				break;
 		}
 		tab.title = title;

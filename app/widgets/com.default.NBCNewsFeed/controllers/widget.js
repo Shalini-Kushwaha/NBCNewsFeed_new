@@ -1,12 +1,17 @@
 exports.getNewsData = function(callback, url) {	
 	Ti.API.info('widget called for get news data');
 	this.xhr = Titanium.Network.createHTTPClient();
-
+    
+    Ti.API.info('***********************'+url);
+    
 	this.xhr.onload = function() {		
-		var title, image, url, pubDate, description, c = 0, newsData = [];
+		var title, image, url, pubDate, description, c = 0, updateTime, newsData = [];
 		//alert(this.responseXML);	
 		this.doc = this.responseXML.documentElement;
-	
+	    
+	    updateTime = this.doc.getElementsByTagName('pubDate').item(0).text;
+	    updateTime = updateTime.split(' ')[4];
+	    
 		this.items = this.doc.getElementsByTagName('item');
 		//alert(this.items.length);
 		for ( c = 0; c < this.items.length; c += 1) {
@@ -40,7 +45,7 @@ exports.getNewsData = function(callback, url) {
 		Ti.API.info(JSON.stringify(newsData));
 
 		if (callback) {
-			callback(newsData);
+			callback(newsData, updateTime);
 		}
 	};
 	this.xhr.onerror = function(e) {

@@ -24,8 +24,9 @@ $.collapse.addEventListener('singletap', function(e) {
 });
 
 // function to get news data
-function getNewsData(newsData) {
+function getNewsData(newsData, updateTime) {
     var i, newsDataLength = newsData.length, row, imageView, titleLabel, result = [], detailView;
+    $.updateTime.setText('Updated: '+updateTime);
     for ( i = 0; i < newsDataLength; i += 1) {
         news = newsData[i];
         row = Ti.UI.createView({
