@@ -1,53 +1,79 @@
-var categories =[];
+/*************************/
+/* Global Variables */
+/*************************/
+
+var categories =[], isCategoryListViewVisible = false;
+
+
+/*************************/
+/* Private and Public functions */
+/*************************/
+
 
 // function to get current tab	
 exports.getTab = function(){	
 	return $.tab;
 };
 
-//tab event listner
-function loadCategories(e){
-	setCategories(e.index, e.source);
-}
-
 // function to get news data
 function getNewsData(newsData){
-	//Ti.API.info(newsData);
-	$.categoryTable.visible = false; // set other settings
-	var i, newsDataLength = newsData.length,row,imageView, titleLabel, result=[], detailView;
+	Ti.API.info(newsData);
+	//$.categoryTable.visible = false; // set other settings
+	var i, newsDataLength = newsData.length,row,imageView, titleLabel, result=[], detailView, publishDateLabel;
 	for(i=0; i< newsDataLength; i+=1){
 		news = newsData[i];
 		row = Ti.UI.createTableViewRow({
-			height: 60,
+			height: 70,
 			width: Ti.UI.SIZE,
 			index: i,
-			url: news.url
+			url: news.url,
+			backgroundColor: 'black',
+			selectionStyle: Titanium.UI.iPhone.TableViewCellSelectionStyle.GRAY			
 		});
 		
 		imageView = Ti.UI.createImageView({
-			height: 80,
+			height: 85,
 			width: 80,
 			image: news.image,
-			left : 0,
-			touchEnabled: false
+			left : 5,
+			touchEnabled: false			
 		});
 		titleLabel = Ti.UI.createLabel({
 			height: Ti.UI.SIZE,
-			width: '75%',
+			width: '70%',
 			text: news.title,		
 			textAlign:'left',
-			left:90,		
+			left:95,		
 			font:{
-				fontFamily:'arial', fontSize:'14'
+				fontFamily:'arial', fontSize:'16', fontWight: 'bold'
 			},
-			touchEnabled: false			
+			touchEnabled: false,
+			color: 'white',
+			top : 8			
+		});
+		
+		publishDateLabel = Ti.UI.createLabel({
+			height: Ti.UI.SIZE,
+			width: '65%',
+			text: news.pubDate ,  //getPubDate(news.pubDate),		
+			textAlign:'left',
+			left:95,		
+			font:{
+				fontFamily:'arial', fontSize:'12'
+			},
+			touchEnabled: false,
+			color: '#9f1b1e', 
+			top: 45			
 		});
 		
 		row.add(imageView);
 		row.add(titleLabel);
+		row.add(publishDateLabel);
 	
 		// on row click event, get detail page
 		row.addEventListener('click', function(e){
+			isCategoryListViewVisible = true;
+			showCategories();
 			$.newsDetailWebView.url = e.source.url;
 			$.newsDetailScrollView.animate(animateView(0));	
 		});
@@ -73,14 +99,39 @@ function hideNewsDetailView(e){
 	
 }
 
+/*
+ * show category list or hide
+ */
+function showCategories(){	
+	$.categoryListView.hide();
+	if(!isCategoryListViewVisible){
+		isCategoryListViewVisible = true;
+		$.categoryListView.show();		
+	}else{
+		isCategoryListViewVisible = false;
+	}
+	
+}
+
+
+
+/*
+ Function to set data on category table and in news 
+ table for the default page 
+ * */
 function setCategoryTable(categories){	
 	var catLength = categories.length,category, row, label, result =[], i;
 	Ti.API.info('catLength' + catLength);
+	
+	// call API to get default data and set category Label text
 	$.nbc.getNewsData(getNewsData, categories[0].url);	
+	$.categoryLabel.text = categories[0].title;
+	
+	// bind category table
 	for(i=0; i< catLength; i+=1){	
 		category = categories[i];	
 		row = Ti.UI.createTableViewRow({
-			height: 40,
+			height: 35,
 			width: Ti.UI.SIZE,
 			index: i,
 			titleText : category.title,
@@ -112,29 +163,33 @@ function setCategoryTable(categories){
 		});
 		
         row.add(label);
-        row.add(button);
+      //  row.add(button);
         
         // on row click event, get news table
         row.addEventListener('click', function(e) {
+     
+        	$.categoryLabel.text = e.source.titleText;        
+        	showCategories();
+        	
             //	Ti.App.fireEvent('getNewsData',{url: e.source.url});
-            if (e.source.id === 'addButton') {
-                var db = Ti.Database.open('nbcNews');
-                var favorites = db.execute('SELECT * FROM favorites');
-                while (favorites.isValidRow()) {
-                    url = favorites.fieldByName('url');
-                    if (e.source.url === url) {
-                        alert('Already added');
-                        return;
-                    }
-                    favorites.next();
-                }
-                db.execute("INSERT INTO favorites(title,url)VALUES(?,?)", e.source.titleText, e.source.url);
-                db.close();
-                return;
-            }
+            // if (e.source.id === 'addButton') {
+                // var db = Ti.Database.open('nbcNews');
+                // var favorites = db.execute('SELECT * FROM favorites');
+                // while (favorites.isValidRow()) {
+                    // url = favorites.fieldByName('url');
+                    // if (e.source.url === url) {
+                        // alert('Already added');
+                        // return;
+                    // }
+                    // favorites.next();
+                // }
+                // db.execute("INSERT INTO favorites(title,url)VALUES(?,?)", e.source.titleText, e.source.url);
+                // db.close();
+                // return;
+            // }
             Ti.API.info(e.source.url);
             $.nbc.getNewsData(getNewsData, e.source.url);
-            $.categoryTable.hideTable(e.source.titleText);
+          //  $.categoryTable.hideTable(e.source.titleText);
         });
 		result.push(row);
 	}
@@ -147,7 +202,7 @@ function setCategoryTable(categories){
 function setCategories(tabIndex){		
 	var categories =[];
 	var categoriesJson = {};	
-	var text = Alloy.CFG.newsFeedCategories[tabIndex-1];
+	var text = Alloy.CFG.newsFeedCategories[tabIndex-1];	
     text = text?text.replace(/&/g,'&amp;'):text;
 	// if text present, parse into xml document
 	if (text) {
@@ -168,4 +223,26 @@ function setCategories(tabIndex){
 	}
 	
 };
+
+
+/*************************/
+/* Event Handlers */
+/*************************/
+
+
+/*
+ * Focus event of Tab 
+ */
+function loadCategories(e){
+	setCategories(e.index, e.source);
+}
+
+/*
+ * Click event of change label
+ */
+function showCategoriesList(e){
+	showCategories();
+}
+
+
 

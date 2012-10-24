@@ -5,19 +5,19 @@
 	barColor:'black'
 },
 "#categoryTable":{
-	top: 42,	
-	visible: false,
+	top: 8,		
 	width:'95%',
-	left:10,
-	zIndex: 100,
-	height:200,
-	borderColor:'black'
+	left:2,
+	zIndex: 500,
+	height:Ti.UI.SIZE,
+//	borderColor:'green'
 },
 "#newsTable":{
-	top:48,
+	top:28,
 	visible: false,
 	width: '100%',
-	height:'100%'	
+	height:'95%',
+	backgroundColor: '#9f1b1e'	
 },
 '#newsDetailScrollView':{
 	top:0,
@@ -32,4 +32,42 @@
 	left:0,
     width: '100%',
     height:'100%',
+},
+"#categoryListView":{
+	height: '50%',
+	width:'50%',
+	top: 35,
+	right: 0,
+	//borderColor: 'green',
+	visible:'false',
+	zIndex: 200,
+	backgroundImage: 'filterDrop.png'
+},
+"#categoryTextView":{
+	top: 0,	
+	width: '100%',
+	height: '8%',
+	backgroundColor: '#9f1b1e'	
+},
+"#categoryLabel":{
+	height: Ti.UI.SIZE,
+	width: Ti.UI.SIZE,
+	left: 5,	
+	font:{
+		fontFamily: 'Arial',
+		fontWeight: 'bold'
+	},
+	color: 'white'
+},
+"#changeCategoryLabel":{
+	height: Ti.UI.SIZE,
+	width: Ti.UI.SIZE,
+	right: 10,
+	text: 'Change',
+	font:{
+		fontFamily: 'Arial',
+		fontSize: 10
+		
+	},
+	color: 'white'
 }

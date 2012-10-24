@@ -2,8 +2,16 @@
 	<Tab id="tab" onFocus="loadCategories">		
 		<Window id= 'mainWindow' class="container">
 			<Require type="widget" src="com.default.NBCNewsFeed" id="nbc"/>	
-			<Require src="dropdown" id="dropDown"/>
-			<TableView id='categoryTable'></TableView> 
+		<!-- 	<Require src="dropdown" id="dropDown"/> -->
+			<View id='categoryTextView'>
+				<Label id="categoryLabel"></Label>
+				<Label id="changeCategoryLabel" onClick="showCategoriesList"></Label>
+			</View>
+			
+			<View id='categoryListView'>
+				<TableView id='categoryTable'></TableView>
+			</View>
+			 
 			 <TableView id='newsTable'></TableView>
 			 <ScrollView id='newsDetailScrollView' onSwipe="hideNewsDetailView">
 			 	<WebView id='newsDetailWebView' ></WebView>
