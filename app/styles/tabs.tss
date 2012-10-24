@@ -90,7 +90,7 @@
 		fontWeight: 'bold'
 		
 	},
-	color: 'black',
+	color: 'white',
 	visible : false
 
 }
