@@ -18,7 +18,10 @@
 			 	<WebView id='newsDetailWebView' ></WebView>
 			 </ScrollView>	
 			 
-			 <Label id='errorMessageLabel'></Label>		 
+			 <Label id='errorMessageLabel'></Label>	
+			 <View id='loadingView'>
+			 	<Label id='loadingLabel'></Label>
+			 </View>	 
 		</Window>
 	</Tab>
 </Alloy>

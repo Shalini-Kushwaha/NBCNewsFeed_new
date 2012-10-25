@@ -5,6 +5,9 @@
 			<ScrollView id='newsDetailScrollView' onSwipe="hideNewsDetailView">
 				<WebView id='newsDetailWebView' ></WebView>
 			</ScrollView>
+			 <View id='loadingView'>
+			 	<Label id='loadingLabel'></Label>
+			 </View>	 
 		</Window>
 	</Tab>
 </Alloy>

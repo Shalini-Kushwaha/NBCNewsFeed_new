@@ -4,6 +4,7 @@
 
 var categories =[], isCategoryListViewVisible = false, currentCategoryUrl;
 
+
 /*************************/
 /* Private and Public functions */
 /*************************/
@@ -11,6 +12,7 @@ var categories =[], isCategoryListViewVisible = false, currentCategoryUrl;
 
 // function to get current tab	
 exports.getTab = function(){	
+	//Alloy.CFG.loadingView = $.loadingView;
 	return $.tab;
 };
 
@@ -31,7 +33,7 @@ function getNewsData(newsData){
 
 	if(newsDataLength === 0){
 		$.errorMessageLabel.show();
-		
+		$.loadingView.hide();
 		return;
 	}
 	for(i=0; i< newsDataLength; i+=1){
@@ -111,6 +113,7 @@ function getNewsData(newsData){
 	}
 	$.newsTable.setData(result);	
 	$.newsTable.visible = true;
+	$.loadingView.hide();
 	
 };
 
@@ -198,6 +201,7 @@ function setCategoryTable(categories){
         
         // on row click event, get news table
         row.addEventListener('click', function(e) {
+        	$.loadingView.show();
             $.categoryLabel.text = e.source.titleText;        
             showCategories();
             Ti.API.info(e.source.url);
@@ -264,13 +268,14 @@ function isFavorite() {
  * Focus event of Tab 
  */
 function loadCategories(e){
+	$.loadingView.show();
 	setCategories(e.index, e.source);
 }
 
 /*
  * Click event of change label
  */
-function showCategoriesList(e){
+function showCategoriesList(e){	
 	showCategories();
 }
 
