@@ -20,12 +20,13 @@ function loadCategories(e) {
     
     //db.execute('DELETE TABLE favorites');
     //db.execute("INSERT INTO favorites(catid,catname,subcatname)VALUES(?,?,?)",2,'News','Celebrity');
-    
+    $.loadingView.show();
     while (favorites.isValidRow()) {
         var widgetView = Alloy.createController('widgetView', {
             titleText : favorites.fieldByName('title'),
             url : favorites.fieldByName('url'),
-            rowClick : rowClick
+            rowClick : rowClick,
+            loadingView : $.loadingView
         });
         $.scrollview.add(widgetView.getView());
         favorites.next();

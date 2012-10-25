@@ -73,5 +73,5 @@ function getNewsData(newsData, updateTime) {
 
         $.favView.add(row);
     }
-    
+    params.loadingView.hide();
 };

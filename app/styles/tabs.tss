@@ -67,7 +67,7 @@
 	text: 'Change',
 	font:{
 		fontFamily: 'Arial',
-		fontSize: 10
+		fontSize: 14
 		
 	},
 	color: 'white'
