@@ -249,13 +249,13 @@ function isFavorite() {
     while (favorites.isValidRow()) {
         url = favorites.fieldByName('url');
         if (currentCategoryUrl === url) {
-            $.favoritesButton.image='favorite.png';
+            $.favoritesButton.image='/favorite.png';
             db.close();
             return true;
         }
         favorites.next();
     }
-    $.favoritesButton.image='unFavorite.png';
+    $.favoritesButton.image='/unFavorite.png';
     db.close();
 }
 
@@ -286,12 +286,12 @@ function addToFavorites(e){
     var db = Ti.Database.open('nbcNews');
     if(!isFavorite()){
         db.execute("INSERT INTO favorites(title,url)VALUES(?,?)", $.categoryLabel.text, currentCategoryUrl);
-        $.favoritesButton.image='favorite.png';
+        $.favoritesButton.image='/favorite.png';
         db.close();
         return;
     }
     db.execute('DELETE FROM favorites where url=?', currentCategoryUrl);
-    $.favoritesButton.image='unFavorite.png';
+    $.favoritesButton.image='/unFavorite.png';
     db.close();
 }
 

@@ -27,7 +27,7 @@
     right: 0,
     height: 20,
     width: 20,
-    backgroundImage:'Delete.png'
+    backgroundImage:'/Delete.png'
 },
 "#updateTime":{
     right:20,
@@ -42,7 +42,7 @@
     height: 20,
     width: 15,
     isCollapse:false,
-    backgroundImage:'collapse.png'
+    backgroundImage:'/collapse.png'
 },
 "#favView": {
     top: 0,

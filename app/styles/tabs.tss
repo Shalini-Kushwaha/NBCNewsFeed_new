@@ -41,7 +41,7 @@
 	right: 0,
 	visible:'false',
 	zIndex: 200,
-	backgroundImage: 'filterDrop.png'	
+	backgroundImage: '/filterDrop.png'	
 },
 "#categoryTextView":{
 	top: 0,	
@@ -76,7 +76,7 @@
     height:20,
     width:20,
     right:5,
-    image:'unFavorite.png'
+    image:'/unFavorite.png'
 },
 "#errorMessageLabel":{
 	height: Ti.UI.SIZE,
