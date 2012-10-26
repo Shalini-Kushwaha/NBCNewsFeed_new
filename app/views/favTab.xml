@@ -2,9 +2,6 @@
 	<Tab id="tab" onFocus="loadCategories">
 		<Window id= 'mainWindow' class="container" title='Favorites' barColor='black'>
 			<ScrollView id='scrollview' height='95%' width='100%' layout='vertical'></ScrollView>
-			<ScrollView id='newsDetailScrollView' onSwipe="hideNewsDetailView">
-				<WebView id='newsDetailWebView' ></WebView>
-			</ScrollView>
 			 <View id='loadingView'>
 			 	<Label id='loadingLabel'></Label>
 			 </View>	 

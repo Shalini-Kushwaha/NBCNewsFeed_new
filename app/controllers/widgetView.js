@@ -72,6 +72,7 @@ function getNewsData(newsData, updateTime) {
         });
 
         $.favView.add(row);
+        $.favView.contentWidth += row.width + row.left;
     }
     params.loadingView.hide();
 };

@@ -12,6 +12,12 @@
     height: '90%',
     backgroundImage:'/curledpaper.png',
 },
+'#newsDetailView[platform=android]':{
+    top:0,
+    width: Ti.UI.FILL,
+    height: Ti.UI.FILL,
+    backgroundImage:'/curledpaper.png',
+},
 '#newsDetailWebView':{
     top:5,
     left:10,

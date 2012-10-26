@@ -5,9 +5,13 @@ exports.getTab = function() {
     return $.tab;
 };
 
-function rowClick(url){
-    $.newsDetailWebView.url = url;
-    $.newsDetailScrollView.animate(animateView(0)); 
+function rowClick(url) {
+    var newsDetailWindow = Alloy.createController('details', {
+        url : url,
+    }).getView();
+    newsDetailWindow.open({
+        transition : Ti.UI.iPhone.AnimationStyle.CURL_DOWN
+    });
 }
 
 //tab event listner
@@ -36,20 +40,8 @@ function loadCategories(e) {
 
 function clearChildrens() {
     var length = $.scrollview.children.length;
+    Ti.API.info(length);
     for (var i = 0; i < length; i++) {
         $.scrollview.remove($.scrollview.children[i]);
-    }
-}
-
-function animateView(leftValue) {
-    var animation = Ti.UI.createAnimation();
-    animation.left = leftValue;
-    animation.duration = 500;
-    return animation;
-}
-
-function hideNewsDetailView(e) {
-    if (e.direction === 'right') {
-        $.newsDetailScrollView.animate(animateView('100%'));
     }
 }

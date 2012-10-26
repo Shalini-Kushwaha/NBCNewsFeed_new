@@ -47,5 +47,14 @@
 "#favView": {
     top: 0,
     visible: true,
+    contentWidth:0,
     layout: 'horizontal'
+},
+"#favView[platform=android]": {
+    top: 0,
+    visible: true,
+    width:'290',
+    contentWidth:0,
+    layout: 'horizontal',
+    scrollType:'horizontal'
 }
