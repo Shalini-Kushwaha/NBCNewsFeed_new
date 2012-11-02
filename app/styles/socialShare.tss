@@ -1,0 +1,51 @@
+".container": {},
+"#blurView":{
+    backgroundColor: "#555555",
+    opacity:0.8,
+    height:'100%',
+    width:'100%'
+},
+"#shareView":{
+    height:145,
+    width:250,
+    backgroundColor:'#9f1b1e',
+    layout:'vertical',
+    borderColor:'#9f1b1e'
+},
+"#headerLabel":{
+    backgroundColor:'#9f1b1e',
+    height:40,
+    width:Ti.UI.FILL,
+    text:'  Share On:',
+    color:'#fff',
+    font:{
+        fontSize:16,
+        fontWeight:'bold'
+    }
+},
+'#crossView':{
+    height:20,
+    width:20,
+    backgroundImage:'Delete.png',
+    top:-30,
+    right:5
+},
+"#fbShare":{
+    text:'  Facebook',
+    top:10
+},
+"#tweetShare":{
+    text:'  Twitter'
+},
+"#emailShare":{
+    text:'  Email'
+},
+".shareLabels":{
+    height:35,
+    width:Ti.UI.FILL,
+    backgroundColor:'white',
+    font:{
+        fontSize:16
+    },
+    borderColor:'#9f1b1e'
+}

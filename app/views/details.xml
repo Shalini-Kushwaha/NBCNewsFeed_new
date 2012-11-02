@@ -1,5 +1,6 @@
 <Alloy>
 	<Window id="win">
+		<Button id="shareButton"/>
 		 <View id='newsDetailView'>
 		 	<WebView id='newsDetailWebView' ></WebView>
 		 	<ImageView id="closeButton"  onSingletap="hideNewsDetailView" />

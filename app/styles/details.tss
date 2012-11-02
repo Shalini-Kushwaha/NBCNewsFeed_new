@@ -1,6 +1,13 @@
 '#win':{
     backgroundColor:"transparent",
 },
+"#shareButton":{
+    top:5,
+    right:10,
+    height:31,
+    width:56,
+    backgroundImage: 'shareButton.png',
+},
 '#newsDetailView[formFactor=handheld]':{
     top:42,
     width: Ti.UI.FILL,
