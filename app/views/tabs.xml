@@ -5,8 +5,9 @@
 		<!-- 	<Require src="dropdown" id="dropDown"/> -->
 			<View id='categoryTextView'>
 				<Label id="categoryLabel"></Label>
-				<Label id="changeCategoryLabel" onClick="showCategoriesList"></Label>
-				<ImageView id="favoritesButton" onClick="addToFavorites"/>
+				<Label id="changeCategoryLabel" onSingletap="showCategoriesList"></Label>
+				<View id="separator" />
+				<ImageView id="favoritesButton" onSingletap="addToFavorites"/>
 			</View>
 			
 			<View id='categoryListView'>

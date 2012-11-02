@@ -2,7 +2,7 @@
 	<Window id="win">
 		 <View id='newsDetailView'>
 		 	<WebView id='newsDetailWebView' ></WebView>
-		 	<ImageView id="closeButton"  onClick="hideNewsDetailView" />
+		 	<ImageView id="closeButton"  onSingletap="hideNewsDetailView" />
 		 </View>			 
 	</Window>
 </Alloy>
