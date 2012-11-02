@@ -6,11 +6,10 @@
 			<View id='categoryTextView'>
 				<Label id="categoryLabel"></Label>
 
-				<Label id="changeCategoryLabel" onSingletap="showCategoriesList"></Label>
-				<Label id="changeCategoryLabel" onClick="showCategoriesList"></Label>
+				<Label id="changeCategoryLabel" onSingletap="showCategoriesList"></Label>		
 				<View id="separatorView"></View> 
-				<View id="favoritesView" 
-					><ImageView id="favoritesButton" />
+				<View id="favoritesView" onSingletap="addToFavorites">
+					<ImageView id="favoritesButton" />
 				</View>				
 
 			</View>

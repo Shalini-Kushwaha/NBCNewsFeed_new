@@ -71,17 +71,17 @@
 	},
 	color: 'white',
 },
-"#separator":{
-    height:28,
-    width:1,
-    right:30,
-    backgroundColor: '#bbb'
-},
+// "#separator":{
+    // height:28,
+    // width:1,
+    // right:30,
+    // backgroundColor: '#bbb'
+// },
 "#separatorView" :{
 	height: 24,
 	width: 1,
 	right: 40,
-	backgroundColor: 'white'
+	backgroundColor: '#bbb'
 },
 "#favoritesView":{
     height:Ti.UI.FILL,
