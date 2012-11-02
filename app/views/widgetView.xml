@@ -4,7 +4,7 @@
 		<Label id='label'></Label>
 		<Button id='button'></Button>
 		<Label id='updateTime'/>
-		<Button id='collapse'></Button>
+		<View id='collapseView' onClick='collapseView'><Button id='collapse'></Button></View>
 		</View>
 		<ScrollView id='favView'></ScrollView>
 		<Require type="widget" src="com.default.NBCNewsFeed" id="nbc"/>

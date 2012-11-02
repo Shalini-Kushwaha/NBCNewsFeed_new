@@ -13,15 +13,24 @@ $.button.addEventListener('singletap', function(e) {
     db.close();
 });
 
-$.collapse.addEventListener('singletap', function(e) {
-    if(e.source.isCollapse){
+function collapseView(e){
+	 if(e.source.isCollapse){
         $.view.height = 140;
         e.source.isCollapse = false;
         return;
     }
     $.view.height = 30;
     e.source.isCollapse = true;
-});
+}
+// $.collapse.addEventListener('singletap', function(e) {
+    // if(e.source.isCollapse){
+        // $.view.height = 140;
+        // e.source.isCollapse = false;
+        // return;
+    // }
+    // $.view.height = 30;
+    // e.source.isCollapse = true;
+// });
 
 // function to get news data
 function getNewsData(newsData, updateTime) {

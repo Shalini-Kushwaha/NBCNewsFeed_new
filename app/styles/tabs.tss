@@ -12,7 +12,7 @@
 	zIndex: 500
 },
 "#newsTable":{
-	top:28,
+	top:35,
 	visible: false,
 	width: '100%',
 	height:'100%',
@@ -46,7 +46,7 @@
 "#categoryTextView":{
 	top: 0,	
 	width: '100%',
-	height: '28',
+	height: '35',
 	backgroundColor: '#9f1b1e'	
 },
 "#categoryLabel":{
@@ -62,8 +62,7 @@
 "#changeCategoryLabel":{
 	height: Ti.UI.FILL,
 	width: Ti.UI.SIZE,
-
-	right: 35,
+	right: 47,
 	text: 'Change',
 	font:{
 		fontFamily: 'Arial',
@@ -78,11 +77,23 @@
     right:30,
     backgroundColor: '#bbb'
 },
+"#separatorView" :{
+	height: 24,
+	width: 1,
+	right: 40,
+	backgroundColor: 'white'
+},
+"#favoritesView":{
+    height:Ti.UI.FILL,
+    width:40,
+    right:0,
+  	backgroundColor: '#9f1b1e'  	
+},
 "#favoritesButton":{
     height:28,
-    width:28,
-    right:0,
+    width:28,    
     image:'/unFavorite.png',
+    touchEnabled: false
 },
 "#errorMessageLabel":{
 	height: Ti.UI.SIZE,

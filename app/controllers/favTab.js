@@ -16,15 +16,22 @@ function rowClick(url) {
 
 //tab event listner
 function loadCategories(e) {
+	// show loading indicator and hide error message
+	$.loadingView.show();
+	$.errorMessageLabel.hide();
     clearChildrens();
     var db = Ti.Database.open('nbcNews');
-    db.execute('CREATE TABLE IF NOT EXISTS favorites(title TEXT, url TEXT); ');
-    //db.execute("INSERT INTO favorites(title,url)VALUES(?,?)",'Prop-Zero','http://www.nbclosangeles.com/blogs/prop-zero/?rss=y&embedThumb=y&summary=y');
+    db.execute('CREATE TABLE IF NOT EXISTS favorites(title TEXT, url TEXT); '); 
     var favorites = db.execute('SELECT * FROM favorites');
+    var rowsCount = favorites.getRowCount();
     
-    //db.execute('DELETE TABLE favorites');
-    //db.execute("INSERT INTO favorites(catid,catname,subcatname)VALUES(?,?,?)",2,'News','Celebrity');
-    $.loadingView.show();
+    // if no favorites found, hide loading indicator and show error message
+    if(rowsCount === 0){
+	 $.loadingView.hide();
+	 $.errorMessageLabel.show();    	 
+    }
+   
+   
     while (favorites.isValidRow()) {
         var widgetView = Alloy.createController('widgetView', {
             titleText : favorites.fieldByName('title'),

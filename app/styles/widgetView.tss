@@ -37,12 +37,19 @@
         fontSize : '12'
     },
 },
-"#collapse": {
+"#collapseView": {
     left: 0,
+    height: 30,
+    width: 18,
+    isCollapse:false,
+    backgroundColor:'#222421'  
+},
+"#collapse": {  
     height: 20,
     width: 15,
     isCollapse:false,
-    backgroundImage:'/collapse.png'
+    touchEnabled: false,
+    backgroundImage:'/collapse.png'  
 },
 "#favView": {
     top: 0,

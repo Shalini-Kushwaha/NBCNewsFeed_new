@@ -282,6 +282,7 @@ function showCategoriesList(e){
 /*
  * Click event of favorites button
  */
+$.favoritesView.addEventListener('singletap', addToFavorites);
 function addToFavorites(e){
     var db = Ti.Database.open('nbcNews');
     if(!isFavorite()){

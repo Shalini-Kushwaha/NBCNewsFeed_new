@@ -36,3 +36,20 @@
 	},
 	color: 'white'	
 },
+"#errorMessageLabel":{
+	height: Ti.UI.SIZE,
+	width: Ti.UI.SIZE,
+	top: 40,
+	left: 10,	
+	text: 'No Favorites Found.Choose category and add it.',
+	font:{
+		fontFamily: 'Arial',
+		fontSize: 16,
+		fontWeight: 'bold'
+		
+	},
+	color: 'white',
+	visible : false
+
+}
+
