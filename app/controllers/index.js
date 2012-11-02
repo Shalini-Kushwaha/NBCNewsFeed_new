@@ -1,8 +1,12 @@
-function getSubCategories(subCategories) {		
-	if (subCategories) {
-		
+function getSubCategories(subCategories) {
+	Alloy.CFG.newsFeedCategories = [];
+	if(subCategories && subCategories.length === 0){
+		alert('Error found while getting data from Server');
+		return;
+	}
+	if (subCategories && subCategories.length > 0) {		
 		Alloy.CFG.newsFeedCategories = subCategories;
-	}	
+	}
 	// create tabs based on category length
 	createTabs();
 };
@@ -18,7 +22,7 @@ function createTabs() {
 	tab.icon = 'favIcon.png';
 	tabsArray.push(tab);
 	$.categoryTabGroup.addTab(tab);
-	
+
 	for (i = 0, categoryLength = Alloy.CFG.newsFeedCategories.length; i < categoryLength; i+=1) {				
 		tabs = new tabsFile();
 		tab = tabs.getTab();

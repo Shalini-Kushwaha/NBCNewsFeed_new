@@ -4,14 +4,14 @@ $.label.setText(params.titleText);
 $.button.id = params.titleText;
 $.nbc.getNewsData(getNewsData, params.url);
 
-$.button.addEventListener('singletap', function(e) {
-    var db = Ti.Database.open('nbcNews');
+function deleteFav(e){
+	 var db = Ti.Database.open('nbcNews');
     db.execute('DELETE FROM favorites where title=?', e.source.id);
     $.view.visible = false;
     $.view.height = 0;
     $.view.top = 0;
     db.close();
-});
+};
 
 function collapseView(e){
 	 if(e.source.isCollapse){
@@ -21,21 +21,25 @@ function collapseView(e){
     }
     $.view.height = 30;
     e.source.isCollapse = true;
-}
-// $.collapse.addEventListener('singletap', function(e) {
-    // if(e.source.isCollapse){
-        // $.view.height = 140;
-        // e.source.isCollapse = false;
-        // return;
-    // }
-    // $.view.height = 30;
-    // e.source.isCollapse = true;
-// });
-
+};
 // function to get news data
 function getNewsData(newsData, updateTime) {
     var i, newsDataLength = newsData.length, row, imageView, titleLabel, result = [], detailView;
-    $.updateTime.setText('Updated: '+updateTime);
+    // if updateTime is present
+    if(updateTime){
+    	 $.updateTime.setText('Updated: '+updateTime);
+    }
+   
+    // if no data found, hide loading indicatoe and show error message label 
+    // (if database rows found, dont show error message label)
+    if(newsDataLength === 0){
+    	if(params.dataCount === 0){
+    		params.errorMessageLabel.show();
+    	}		 
+		 params.loadingView.hide();
+		return;
+	}
+	
     for ( i = 0; i < newsDataLength; i += 1) {
         news = newsData[i];
         row = Ti.UI.createView({

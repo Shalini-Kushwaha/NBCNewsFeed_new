@@ -2,9 +2,9 @@
 	<View id='view'>
 		<View id='headerView'>
 		<Label id='label'></Label>
-		<Button id='button'></Button>
+		<Button id='button' onSingletap='deleteFav'></Button>
 		<Label id='updateTime'/>
-		<View id='collapseView' onClick='collapseView'><Button id='collapse'></Button></View>
+		<View id='collapseView' onSingletap='collapseView'><Button id='collapse'></Button></View>
 		</View>
 		<ScrollView id='favView'></ScrollView>
 		<Require type="widget" src="com.default.NBCNewsFeed" id="nbc"/>

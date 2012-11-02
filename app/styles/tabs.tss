@@ -38,7 +38,7 @@
 	//height: Ti.UI.SIZE,
 	width:'50%',
 	top: 35,
-	right: 0,
+	right: 5,
 	visible:'false',
 	zIndex: 200,
 	backgroundImage: '/filterDrop.png'	

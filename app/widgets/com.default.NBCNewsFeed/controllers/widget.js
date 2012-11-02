@@ -71,8 +71,7 @@ exports.getNewsData = function(callback, url) {
 exports.getSubCategories = function(callback) {
 	var xhr, startIndex, endIndex, str, response, subCategory = [], i, splittedcategoryText, splittedcategory = [];
 	xhr = Ti.Network.createHTTPClient({
-		onload : function(e) {
-
+		onload : function(e) {	
 			response = this.responseText;
 			//Ti.API.info(this.responseText);
 			startIndex = response.indexOf('class="rss_steps"');
@@ -93,7 +92,10 @@ exports.getSubCategories = function(callback) {
 			}
 		},
 		onerror : function(e) {
-			alert('failure' + e);
+			if (callback) {				
+				callback(splittedcategory);
+			}
+			Ti.API.error('failure' + e);
 		},
 		timeout : 5000
 	});
