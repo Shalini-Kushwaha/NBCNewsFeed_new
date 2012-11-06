@@ -6,7 +6,7 @@
     right:10,
     height:31,
     width:56,
-    backgroundImage: 'shareButton.png',
+    backgroundImage: 'shareButton.png'
 },
 '#newsDetailView[formFactor=handheld]':{
     top:42,
@@ -16,8 +16,8 @@
    // backgroundImage:'/curledpaper.png',
 },
 '#newsDetailView[formFactor=tablet]':{
-    width: '90%',
-    height: '90%',
+   	width: Ti.UI.FILL,
+    height: Ti.UI.FILL,
     backgroundColor: 'white',
    // backgroundImage:'/curledpaper.png',
 },

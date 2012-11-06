@@ -1,51 +1,68 @@
-".container": {},
+".container": {	
+	  top: 38	
+},
 "#blurView":{
     backgroundColor: "#555555",
-    opacity:0.8,
+    opacity:0.8,  
     height:'100%',
-    width:'100%'
+    width:'100%'  
 },
-"#shareView":{
-    height:145,
-    width:250,
-    backgroundColor:'#9f1b1e',
-    layout:'vertical',
-    borderColor:'#9f1b1e'
+"#shareView[formFactor=handheld]":{  
+	height: '50%',
+	width:'50%', 
+    top: 0,
+	right: 5,
+    backgroundImage: '/popup.png',
+    layout: 'vertical'  
 },
-"#headerLabel":{
-    backgroundColor:'#9f1b1e',
-    height:40,
-    width:Ti.UI.FILL,
-    text:'  Share On:',
-    color:'#fff',
-    font:{
-        fontSize:16,
-        fontWeight:'bold'
-    }
-},
-'#crossView':{
-    height:20,
-    width:20,
-    backgroundImage:'Delete.png',
-    top:-30,
-    right:5
+"#shareView[formFactor=tablet]":{  
+	height: '35%',
+	width:'35%', 
+    top: 0,
+	right: 5,
+    backgroundImage: '/popup.png',
+    layout: 'vertical'  
 },
 "#fbShare":{
-    text:'  Facebook',
-    top:10
-},
-"#tweetShare":{
-    text:'  Twitter'
+  top: '10%'
 },
 "#emailShare":{
-    text:'  Email'
+  top:  '8%'
 },
-".shareLabels":{
-    height:35,
+".shareView":{	
+	top: '10%',
+	height:'22%',
     width:Ti.UI.FILL,
-    backgroundColor:'white',
-    font:{
-        fontSize:16
-    },
-    borderColor:'#9f1b1e'
+    backgroundColor:'transparent'
 }
+
+
+// "#tweetShare":{
+    // top: 24
+// },
+// "#fbShare[formFactor=handheld]":{
+  // top: '10%'
+// },
+// "#emailShare[formFactor=handheld]":{
+  // top:  '8%'
+// },
+// ".shareView[formFactor=handheld]":{	
+	// top: '10%',
+	// height:'22%',
+    // width:Ti.UI.FILL,
+    // backgroundColor:'transparent',    
+    // borderColor:'red'
+// },
+// "#fbShare[formFactor=tablet]":{
+  // top: '10%'
+// },
+// "#emailShare[formFactor=tablet]":{
+  // top: '8%'
+// },
+// ".shareView[formFactor=tablet]":{	
+	// top: '10%',
+	// height:'22%',
+    // width:Ti.UI.FILL,
+    // backgroundColor:'tablet',    
+    // borderColor:'red'
+// },

@@ -1,12 +1,16 @@
 <Alloy>
 	<View class="container">
 		<View id="blurView"/>
-		<View id="shareView">
-			<Label id="headerLabel"/>
+		<View id="shareView">			
+			<View id="tweetShare" onClick="tweetOnTwitter" class="shareView"/>
+			<View id="fbShare" onClick="shareOnFB" class="shareView"/>
+			<View id="emailShare" onClick="mailSomeone" class="shareView"/>
+			
+			<!-- <Label id="headerLabel"/>
 			<View id="crossView" onClick="hideShareView"/>
 			<Label id="fbShare" onClick="shareOnFB" class="shareLabels"/>
 			<Label id="tweetShare" onClick="tweetOnTwitter" class="shareLabels"/>
-			<Label id="emailShare" onClick="mailSomeone" class="shareLabels"/>
+			<Label id="emailShare" onClick="mailSomeone" class="shareLabels"/> -->
 		</View>
 	</View>
 </Alloy>

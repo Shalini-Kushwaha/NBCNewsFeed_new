@@ -1,10 +1,6 @@
 var args = arguments[0] || {},
 social = require('alloy/social');
 
-function hideShareView(){
-    $.socialShare.visible=false;
-};
-
 function shareOnFB(){
     if (Titanium.Facebook.loggedIn) {
         send_facebook_stream();
